@@ -68,4 +68,14 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+// main code
+// create player object
+let player = new Player();
+
+// create enemy objects
+let enemy1 = new Enemy();
+let enemy2 = new Enemy();
+let enemy3 = new Enemy();
+// add these to the allEnemies
+let allEnemies = [enemy1, enemy2, enemy3];
 
