@@ -11,6 +11,8 @@ var Enemy = function(xPos,yPos,speed) {
     this.xMax = 500;
     this.maxSpeed = speed;
     this.speed = speed;
+    this.giggleSound = new Audio("audio/giggle.wav");
+
 };
 
 // Update the enemy's position, required method for game
@@ -22,6 +24,7 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt;
 
     // check for collision with player
+    this.checkForCollision();
 
     // if now off-screen, re-enter screen from left
     // at a revised speed.
@@ -35,6 +38,18 @@ Enemy.prototype.update = function(dt) {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Enemy.prototype.checkForCollision = function() {
+    // check for collision with player.
+    // Math.abs always returns absolute 'positive' value allowing
+    // this 'if' statement to work all around the player.
+    if ( ( Math.abs(this.x - player.x) < 60) &&
+         ( Math.abs(this.y - player.y) < 60) ) {
+            player.resetPosition();
+            player.playSound(this.giggleSound);
+            //player.lives-=1;
+    }
 };
 
 // Now write your own player class
@@ -58,7 +73,6 @@ class Player {
         this.yMin = 10;
         this.yMax = 410;
         this.splashSound = new Audio("audio/splash.wav");
-        this.giggleSound = new Audio("audio/giggle.wav");
     }
 
     // Update the player's position, required method for game
@@ -144,8 +158,8 @@ document.addEventListener('keyup', function(e) {
 let player = new Player(200, 410);
 
 // create enemy objects off screen
-let enemy1 = new Enemy(-300, 65, 200);
-let enemy2 = new Enemy(-100, 145,200);
-let enemy3 = new Enemy(-200, 225, 200);
+let enemy1 = new Enemy(-400, 65, 250);
+let enemy2 = new Enemy(-100, 145,250);
+let enemy3 = new Enemy(-200, 225, 250);
 // add these to the allEnemies array
 let allEnemies = [enemy1, enemy2, enemy3];
