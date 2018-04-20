@@ -1,23 +1,26 @@
 /* filename: app.js
-** project:  FEND - Arcade Game
+** project:  FEND - Classic Arcade Game Clone
 ** Author:   Colin Ashley
 */
 
 // Enemies our player must avoid
 const Enemy = function(xPos,yPos,speed) {
     // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.giggleSound = new Audio('audio/giggle.wav');
+    // enemy position
     this.x = xPos;
     this.y = yPos;
     // rightmost enemy position
     this.xMax = 500;
+    // min. max & initial speeds
+    this.minSpeed = 50;
     this.maxSpeed = speed;
-    this.speed = Math.floor((Math.random() * this.maxSpeed) + 50);
-    this.proximity = 60;
+    this.speed = Math.floor((Math.random() * this.maxSpeed) + this.minSpeed);
+    // collision sensitivity
+    this.proximity = 50;
 };
 
 // Update the enemy's position, required method for game
@@ -34,7 +37,7 @@ Enemy.prototype.update = function(dt) {
     // if now off-screen, re-enter screen from left at a revised speed.
     if ( this.x >= this.xMax ) {
         this.x = -100;
-        this.speed = Math.floor((Math.random() * this.maxSpeed) + 50);
+        this.speed = Math.floor((Math.random() * this.maxSpeed) + this.minSpeed);
     }
 };
 
@@ -57,7 +60,7 @@ Enemy.prototype.checkForCollision = function() {
     }
 };
 
-// Now write your own player class
+// player class
 // This class requires an update(), render() and a handleInput() method.
 class Player {
     constructor (xPos, yPos) {
@@ -71,6 +74,7 @@ class Player {
         this.y = yPos;
         this.xStart = xPos;
         this.yStart = yPos;
+        this.stepSize = 20;
         // min/max position bounds for player movement
         this.xMin = 0;
         this.xMax = 400;
@@ -81,9 +85,7 @@ class Player {
     // Update the player's position, required method for game
     // Parameter: dt, a time delta between ticks
     update(dt) {
-        // You should multiply any movement by the dt parameter
-        // which will ensure the game runs at the same speed for
-        // all computers.;
+        // For the player, this is handled in handleInput() below.
     }
 
 // Draw the player on the screen, required method for game
@@ -99,12 +101,12 @@ class Player {
         switch (keyPressed) {
             case 'left':
                 if (this.x > this.xMin) {
-                    this.x -= 20;
+                    this.x -= this.stepSize;
                 }
                 break;
             case 'right':
                 if (this.x < this.xMax ) {
-                    this.x += 20;
+                    this.x += this.stepSize;
                 }
                 break;
             case 'up':
@@ -115,12 +117,12 @@ class Player {
                     this.swims++;
                     scoreboard.updateSwims();
                 } else {
-                    this.y -= 20;
+                    this.y -= this.stepSize;
                 }
                 break;
             case 'down':
                 if ( this.y < this.yMax ) {
-                    this.y += 20;
+                    this.y += this.stepSize;
                 }
                 break;
             default:
@@ -224,6 +226,7 @@ let player = new Player(200, 410);
 let enemy1 = new Enemy(-400, 65, 300);
 let enemy2 = new Enemy(-100, 145,300);
 let enemy3 = new Enemy(-200, 225, 300);
+
 // add these to the allEnemies array
 let allEnemies = [enemy1, enemy2, enemy3];
 

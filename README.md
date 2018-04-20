@@ -1,6 +1,46 @@
-frontend-nanodegree-arcade-game
-===============================
+# FEND - Classic Arcade Game Clone Project
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+Udacity Front-End Web Dev Nano-Degree Exploring-JS project.
+Loosely based on the classic 'frogger' arcade game.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## Table of Contents
+
+* [Features](#features)
+* [Installation](#installation)
+* [Usage](#usage)
+
+## Features
+
+- Game objective
+  - Navigate the player across the pavement, past the bugs, to swim in the sea.
+
+- Game display
+  - Enemies (Bugs) move individually at random speed on each pass.
+  - Enemies detect collisions with the player and reduce life count.
+  - Player moves a small step on each direction arrow-key press.
+  - Player giggles (audio) when hit by an Enemy (bug) and moves back to random start position.
+  - Player splashes (audio) into sea when reached successfully.
+
+- Scoreboard
+  - live display of:
+    - Number of swims achieved.
+    - Number of lives remaining.
+
+- Game completion
+  - A 'play again' modal & button is displayed when all lives have been lost.
+
+## Installation
+
+Download all the files to your local machine.
+
+- git clone https://github.com/ColinAshley/classic-arcade-game
+- cd classic-arcade-game
+
+## Usage
+
+Open index.html using a browser.
+Use the direction (arrow) keys to navigate the player to the sea avoiding the bugs.
+
+## License
+
+Distributed under the MIT license.

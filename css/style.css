@@ -1,3 +1,8 @@
+/* filename: style.css
+** project:  FEND - Classic Arcade Game Clone
+** author:   Colin Ashley
+*/
+
 body {
     text-align: center;
     font-family: 'Life Savers', cursive;
@@ -31,8 +36,8 @@ header {
     color:  violet;
 }
 
+/* for 'play again' modal and button */
 .modal {
-/* for 'play again' button */
     background-color: white;
     text-align: center;
     width: 100%;
