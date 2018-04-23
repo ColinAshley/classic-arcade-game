@@ -1,3 +1,5 @@
+'use strict';
+
 /* filename: app.js
 ** project:  FEND - Classic Arcade Game Clone
 ** Author:   Colin Ashley
