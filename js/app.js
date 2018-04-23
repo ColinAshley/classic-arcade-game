@@ -54,11 +54,11 @@ Enemy.prototype.checkForCollision = function() {
     // this 'if' statement to work all around the player.
     if ( ( Math.abs(this.x - player.x) < this.proximity) &&
          ( Math.abs(this.y - player.y) < this.proximity) ) {
-            // play a giggle sound if touched by an enemy
-            player.playSound(this.giggleSound);
-            // update scoreboard lives
-            scoreboard.loseLife();
-            player.resetPosition();
+        // play a giggle sound if touched by an enemy
+        player.playSound(this.giggleSound);
+        // update scoreboard lives
+        scoreboard.loseLife();
+        player.resetPosition();
     }
 };
 
@@ -90,7 +90,7 @@ class Player {
         // For the player, this is handled in handleInput() below.
     }
 
-// Draw the player on the screen, required method for game
+    // Draw the player on the screen, required method for game
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
@@ -101,33 +101,33 @@ class Player {
         // Only move player if within the players bounds.
         // Moves kept small to simulate free movement.
         switch (keyPressed) {
-            case 'left':
-                if (this.x > this.xMin) {
-                    this.x -= this.stepSize;
-                }
-                break;
-            case 'right':
-                if (this.x < this.xMax ) {
-                    this.x += this.stepSize;
-                }
-                break;
-            case 'up':
-                // Play splash sound and reset player if water reached
-                if (this.y <= this.yMin ) {
-                    this.playSound(this.splashSound);
-                    this.resetPosition();
-                    this.swims++;
-                    scoreboard.updateSwims();
-                } else {
-                    this.y -= this.stepSize;
-                }
-                break;
-            case 'down':
-                if ( this.y < this.yMax ) {
-                    this.y += this.stepSize;
-                }
-                break;
-            default:
+        case 'left':
+            if (this.x > this.xMin) {
+                this.x -= this.stepSize;
+            }
+            break;
+        case 'right':
+            if (this.x < this.xMax ) {
+                this.x += this.stepSize;
+            }
+            break;
+        case 'up':
+            // Play splash sound and reset player if water reached
+            if (this.y <= this.yMin ) {
+                this.playSound(this.splashSound);
+                this.resetPosition();
+                this.swims++;
+                scoreboard.updateSwims();
+            } else {
+                this.y -= this.stepSize;
+            }
+            break;
+        case 'down':
+            if ( this.y < this.yMax ) {
+                this.y += this.stepSize;
+            }
+            break;
+        default:
                 // nothing to do
         }
     }
